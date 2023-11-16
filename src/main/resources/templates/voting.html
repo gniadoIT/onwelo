@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <title>Voting App</title>
+</head>
+<body>
+    <div class="div table-responsive col-md-4 div">
+        <h2 class="other-header">Voters:</h2>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVoter">Add Voter</button>
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">Name</th>
+                <th scope="col">Has voted</th>
+            </thead>
+            <tbody>
+                <tr th:each="voter: ${voters}">
+                    <td th:text="${voter.figure.name}"></td>
+                    <td th:if="${voter.hasVoted == true}">X</td>
+                    <td th:if="${voter.hasVoted == false}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive col-md-4 div">
+        <h2 class="other-header">Candidates:</h2>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCandidate">Add Candidate</button>
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">Name</th>
+                <th scope="col">Votes</th>
+            </thead>
+            <tbody>
+                <tr th:each="candidate: ${candidates}">
+                    <td th:text="${candidate.figure.name}"></td>
+                    <td th:text="${candidate.votes}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="hr" />
+
+    <div class="modal fade" id="addVoter" tabindex="-1" aria-labelledby="addVoterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addVoterModalLabel">Add Voter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="voterName">Name:</label>
+                    <input id="voterName" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addCandidate" tabindex="-1" aria-labelledby="addCandidateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCandidateModalLabel">Add Candidate</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="candidateName">Name:</label>
+                    <input id="candidateName" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

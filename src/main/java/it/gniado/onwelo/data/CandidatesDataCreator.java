@@ -43,6 +43,6 @@ public class CandidatesDataCreator implements ApplicationListener<ContextRefresh
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
+        initData();
     }
 }

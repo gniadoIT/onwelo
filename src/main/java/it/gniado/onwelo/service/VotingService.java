@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class VoterService {
+public class VotingService {
 
     private final VoterRepository voterRepository;
     private final CandidateRepository candidateRepository;
 
-    public VoterService(VoterRepository voterRepository, CandidateRepository candidateRepository) {
+    public VotingService(VoterRepository voterRepository, CandidateRepository candidateRepository) {
         this.voterRepository = voterRepository;
         this.candidateRepository = candidateRepository;
     }
@@ -30,6 +30,10 @@ public class VoterService {
     public void addVote(int id){
         Candidate candidate = candidateRepository.getCandidateById(id);
         candidateRepository.vote(candidate);
+    }
+
+    public List<Candidate> getAllCandidates() {
+        return candidateRepository.getAll();
     }
 
 }

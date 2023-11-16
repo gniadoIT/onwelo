@@ -2,11 +2,12 @@ package it.gniado.onwelo.repository;
 
 import it.gniado.onwelo.model.Voter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VoterRepository {
 
-    private List<Voter> voters = List.of();
+    private List<Voter> voters = new ArrayList<>();
 
     public List<Voter> getAll(){
         return voters;

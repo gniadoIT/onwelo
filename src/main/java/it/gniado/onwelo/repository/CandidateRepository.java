@@ -3,11 +3,12 @@ package it.gniado.onwelo.repository;
 import it.gniado.onwelo.model.Candidate;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CandidateRepository {
 
-    private List<Candidate> candidates = List.of();
+    private List<Candidate> candidates = new ArrayList<>();
 
     public List<Candidate> getAll(){
         return candidates;
