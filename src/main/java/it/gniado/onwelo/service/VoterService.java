@@ -17,7 +17,9 @@ public class VoterService {
     }
 
     public Voter addVoter(String voterName){
-        return null;
+        Voter voter = new Voter(new Figure(voterName));
+        voterRepository.addVoter(voter);
+        return voter;
     }
 
     public List<Voter> getAllVoters(){

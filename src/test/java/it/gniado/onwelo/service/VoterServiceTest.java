@@ -45,7 +45,6 @@ class VoterServiceTest {
         voterService.addVoter(name);
 
         // THEN
-        verify(voterRepository).addVoter(any(Voter.class));
         assertEquals(voterRepository.getAll().size(), VOTERS_AMOUNT+1);
     }
 

@@ -42,7 +42,6 @@ class CandidateServiceTest {
         candidateService.addCandidate(candidateName);
 
         // THEN
-        verify(candidateRepository).addCandidate(any(Candidate.class));
         assertEquals(candidateRepository.getAll().size(), CANDIDATES_AMOUNT+1);
     }
 

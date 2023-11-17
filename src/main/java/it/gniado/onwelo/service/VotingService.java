@@ -20,6 +20,10 @@ public class VotingService {
     }
 
     public void addVote(int voterId, int candidateId){
+        Candidate candidate = candidateRepository.getCandidateById(candidateId);
+        candidateRepository.vote(candidate);
+
+        voterRepository.vote(voterId);
     }
 
 }
