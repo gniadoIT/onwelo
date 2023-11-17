@@ -22,8 +22,8 @@ class VotingServiceTest {
 
     @BeforeEach
     void setup(){
-        voterRepository = mock(VoterRepository.class);
-        candidateRepository = mock(CandidateRepository.class);
+        voterRepository = new VoterRepository();
+        candidateRepository = new CandidateRepository();
         votingService = new VotingService(voterRepository, candidateRepository);
 
         addVoters(VOTERS_AMOUNT);
