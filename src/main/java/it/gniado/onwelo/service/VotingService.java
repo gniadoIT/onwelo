@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class VotingService {
 
-    private final VoterRepository voterRepository;
+    public final VoterRepository voterRepository;
     private final CandidateRepository candidateRepository;
 
     public VotingService(VoterRepository voterRepository, CandidateRepository candidateRepository) {
@@ -19,21 +19,7 @@ public class VotingService {
         this.candidateRepository = candidateRepository;
     }
 
-    public List<Voter> getAllVoters(){
-        return voterRepository.getAll();
-    }
-
-    public void addVoter(Voter voter){
-        voterRepository.addVoter(voter);
-    }
-
-    public void addVote(int id){
-        Candidate candidate = candidateRepository.getCandidateById(id);
-        candidateRepository.vote(candidate);
-    }
-
-    public List<Candidate> getAllCandidates() {
-        return candidateRepository.getAll();
+    public void addVote(int voterId, int candidateId){
     }
 
 }

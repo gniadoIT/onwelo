@@ -21,7 +21,11 @@ public class VoterRepository {
         this.voters.addAll(voters);
     }
 
+    public Voter getById(int id){
+        return voters.get(id);
+    }
+
     public void vote(int id) {
-        voters.get(id);
+        voters.get(id).setHasVoted(true);
     }
 }
