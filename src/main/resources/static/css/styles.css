@@ -1,4 +1,4 @@
-.div{
+.list{
     display: inline-block;
     margin: 50px;
     vertical-align: top;
@@ -7,4 +7,9 @@
 .votebtn{
     float: right;
     margin: 20px;
+}
+
+.errormessage{
+    font-weight: 400;
+    color: rgb(155 0 0);
 }

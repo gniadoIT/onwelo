@@ -18,7 +18,11 @@ public class VoterService {
 
     public Voter addVoter(String voterName){
         Voter voter = new Voter(new Figure(voterName));
-        voterRepository.addVoter(voter);
+        try {
+            voterRepository.addVoter(voter);
+        } catch (IllegalArgumentException ex){
+            return null;
+        }
         return voter;
     }
 

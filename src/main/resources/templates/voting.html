@@ -8,7 +8,7 @@
     <title>Voting App</title>
 </head>
 <body>
-    <div class="table-responsive col-md-4 div">
+    <div class="table-responsive col-md-4 list">
         <h2 class="other-header">Voters:</h2>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVoter">Add Voter</button>
         <table class="table table-striped">
@@ -24,9 +24,10 @@
                 </tr>
             </tbody>
         </table>
+        <p th:if="${sort != null && sort == 'VOTER'}" class="errormessage">All Voters must be unique, Voter not stored.</p>
     </div>
 
-    <div class="table-responsive col-md-4 div">
+    <div class="table-responsive col-md-4 list">
         <h2 class="other-header">Candidates:</h2>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCandidate">Add Candidate</button>
         <table class="table table-striped">
@@ -41,11 +42,12 @@
                 </tr>
             </tbody>
         </table>
+        <p th:if="${sort != null && sort == 'CANDIDATE'}" class="errormessage">All Candidates must be unique, Candidate not stored.</p>
     </div>
 
     <hr class="hr" />
 
-    <div class="table-responsive col-md-4 div">
+    <div class="table-responsive col-md-4 list">
         <form th:action="@{/vote}" th:object="${vote}" method="post">
             As a
             <select class="form-control" id="votingVoter" name="voterId">
@@ -69,14 +71,16 @@
                     <h5 class="modal-title" id="addVoterModalLabel">Add Voter</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <label for="voterName">Name:</label>
-                    <input id="voterName" type="text">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
+                <form th:action="@{/voter}" th:object="${voter}" method="post">
+                    <div class="modal-body">
+                        <label for="voterName">Name:</label>
+                        <input id="voterName" type="text" name="voterName">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -88,14 +92,16 @@
                     <h5 class="modal-title" id="addCandidateModalLabel">Add Candidate</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <label for="candidateName">Name:</label>
-                    <input id="candidateName" type="text">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
+                <form th:action="@{/candidate}" th:object="${candidate}" method="post">
+                    <div class="modal-body">
+                        <label for="candidateName">Name:</label>
+                        <input id="candidateName" type="text" name="candidateName">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>

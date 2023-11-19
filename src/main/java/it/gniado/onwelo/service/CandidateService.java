@@ -19,7 +19,11 @@ public class CandidateService {
 
     public Candidate addCandidate(String candidateName){
         Candidate candidate = new Candidate(new Figure(candidateName));
-        candidateRepository.addCandidate(candidate);
+        try {
+            candidateRepository.addCandidate(candidate);
+        } catch (IllegalArgumentException ex){
+            return null;
+        }
         return candidate;
     }
 

@@ -1,14 +1,19 @@
 package it.gniado.onwelo.controller;
 
+import it.gniado.onwelo.exception.SaveInterruptedException;
+import it.gniado.onwelo.exception.SaveInterruptedException.Sort;
 import it.gniado.onwelo.model.Candidate;
 import it.gniado.onwelo.service.CandidateService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.rmi.ServerException;
 
@@ -23,12 +28,15 @@ public class CandidateController {
         this.candidateService = candidateService;
     }
 
-    @PostMapping(path = "candidate", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Candidate> addCandidate(@RequestBody String candidateName) throws ServerException {
+    @PostMapping(path = "/candidate")
+    public ResponseEntity<HttpHeaders> addCandidate(@RequestParam("candidateName") String candidateName, HttpServletRequest servletRequest) throws ServerException {
         Candidate candidate = candidateService.addCandidate(candidateName);
         if (candidate == null){
-            throw new ServerException("An error occurred when creating Candidate");
+            throw new SaveInterruptedException("An error occurred when creating Candidate", Sort.CANDIDATE);
         }
-        return new ResponseEntity<>(candidate, HttpStatus.CREATED);
+        servletRequest.getSession().removeAttribute("Sort");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "/");
+        return new ResponseEntity<>(headers, HttpStatus.SEE_OTHER);
     }
 }

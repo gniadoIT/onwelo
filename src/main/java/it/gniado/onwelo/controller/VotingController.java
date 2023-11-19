@@ -1,5 +1,6 @@
 package it.gniado.onwelo.controller;
 
+import it.gniado.onwelo.exception.SaveInterruptedException;
 import it.gniado.onwelo.model.Candidate;
 import it.gniado.onwelo.model.Voter;
 import it.gniado.onwelo.service.CandidateService;
@@ -9,12 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -35,11 +34,12 @@ public class VotingController {
     }
 
     @GetMapping("/")
-    public String getVoting(Model model){
+    public String getVoting(Model model, @Nullable @SessionAttribute("Sort") String sort){
         List<Voter> voters = voterService.getAllVoters();
         List<Candidate> candidates = candidateService.getAllCandidates();
         model.addAttribute("voters", voters);
         model.addAttribute("candidates", candidates);
+        model.addAttribute("sort", sort);
         return "voting";
     }
 
