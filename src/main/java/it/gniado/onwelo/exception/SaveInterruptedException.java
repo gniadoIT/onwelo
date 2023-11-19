@@ -1,7 +1,5 @@
 package it.gniado.onwelo.exception;
 
-import java.rmi.ServerException;
-
 public class SaveInterruptedException extends RuntimeException {
 
     private final String message;

@@ -5,19 +5,14 @@ import it.gniado.onwelo.exception.SaveInterruptedException.Sort;
 import it.gniado.onwelo.model.Candidate;
 import it.gniado.onwelo.service.CandidateService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.rmi.ServerException;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Controller
 public class CandidateController {
