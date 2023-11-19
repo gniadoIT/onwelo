@@ -1,20 +1,15 @@
 package it.gniado.onwelo.service;
 
-import it.gniado.onwelo.model.Candidate;
 import it.gniado.onwelo.model.Figure;
 import it.gniado.onwelo.model.Voter;
 import it.gniado.onwelo.repository.VoterRepository;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.*;
 
 class VoterServiceTest {
 
@@ -58,6 +53,19 @@ class VoterServiceTest {
         // THEN
         assertFalse(voters.isEmpty());
         assertEquals(voters.size(), VOTERS_AMOUNT);
+    }
+
+    @Test
+    void testAddVoterTwice(){
+        // GIVEN
+        String voterName = "Qwerty";
+        voterService.addVoter(voterName);
+
+        // WHEN
+        Voter added = voterService.addVoter(voterName);
+
+        // THEN
+        assertNull(added);
     }
 
 }

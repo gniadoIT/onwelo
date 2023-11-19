@@ -1,7 +1,6 @@
 package it.gniado.onwelo.controller;
 
 import it.gniado.onwelo.exception.SaveInterruptedException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

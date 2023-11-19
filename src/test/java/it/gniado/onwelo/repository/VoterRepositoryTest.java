@@ -1,6 +1,5 @@
 package it.gniado.onwelo.repository;
 
-import it.gniado.onwelo.model.Candidate;
 import it.gniado.onwelo.model.Figure;
 import it.gniado.onwelo.model.Voter;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class VoterRepositoryTest {
 
@@ -72,6 +71,19 @@ class VoterRepositoryTest {
 
         // THEN
         Assertions.assertTrue(voterRepository.getById(index).isHasVoted());
+    }
+
+    @Test
+    void testAddVoterTwice(){
+        // GIVEN
+        Voter voter = createVoter("Qwerty");
+        voterRepository.addVoter(voter);
+
+        // WHEN
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, ()->voterRepository.addVoter(voter));
+
+        // THEN
+        assertEquals(ex.getMessage(), "Voters must be unique");
     }
 
     private Voter createVoter(String name){
