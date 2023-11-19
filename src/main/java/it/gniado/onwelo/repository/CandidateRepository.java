@@ -15,6 +15,9 @@ public class CandidateRepository {
     }
 
     public void addCandidate(Candidate candidate){
+        if (candidates.contains(candidate)){
+            throw new IllegalArgumentException("Candidates must be unique");
+        }
         candidates.add(candidate);
     }
 

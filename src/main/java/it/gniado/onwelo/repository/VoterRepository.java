@@ -15,6 +15,9 @@ public class VoterRepository {
     }
 
     public void addVoter(Voter voter){
+        if (voters.contains(voter)) {
+            throw new IllegalArgumentException("Voters must be unique");
+        }
         voters.add(voter);
     }
 
