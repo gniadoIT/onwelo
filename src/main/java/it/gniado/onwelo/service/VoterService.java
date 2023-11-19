@@ -25,4 +25,8 @@ public class VoterService {
     public List<Voter> getAllVoters(){
         return voterRepository.getAll();
     }
+
+    public List<Voter> getAvailableVoters(){
+        return voterRepository.getAvailable();
+    }
 }

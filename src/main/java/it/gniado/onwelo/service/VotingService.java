@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class VotingService {
 
-    public final VoterRepository voterRepository;
+    private final VoterRepository voterRepository;
     private final CandidateRepository candidateRepository;
 
     public VotingService(VoterRepository voterRepository, CandidateRepository candidateRepository) {

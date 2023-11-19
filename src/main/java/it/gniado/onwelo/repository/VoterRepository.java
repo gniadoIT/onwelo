@@ -4,6 +4,7 @@ import it.gniado.onwelo.model.Voter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VoterRepository {
 
@@ -27,5 +28,9 @@ public class VoterRepository {
 
     public void vote(int id) {
         voters.get(id).setHasVoted(true);
+    }
+
+    public List<Voter> getAvailable() {
+        return voters.stream().filter(v->!v.isHasVoted()).collect(Collectors.toList());
     }
 }
