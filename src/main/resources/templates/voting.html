@@ -8,7 +8,7 @@
     <title>Voting App</title>
 </head>
 <body>
-    <div class="div table-responsive col-md-4 div">
+    <div class="table-responsive col-md-4 div">
         <h2 class="other-header">Voters:</h2>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVoter">Add Voter</button>
         <table class="table table-striped">
@@ -44,6 +44,23 @@
     </div>
 
     <hr class="hr" />
+
+    <div class="table-responsive col-md-4 div">
+        <form th:action="@{/vote}" th:object="${vote}" method="post">
+            As a
+            <select class="form-control" id="votingVoter" name="voterId">
+                <option value="NoName">Voter name...</option>
+                <option th:each="voter, iter: ${voters}" th:value="${iter.index}" th:text="${voter.figure.name}" th:if="${voter.hasVoted == false}"></option>
+            </select>
+            my vote goes for
+            <select class="form-control" id="votingCandidate" name="candidateId">
+                <option value="NoName">Candidate name...</option>
+                <option th:each="candidate, iter: ${candidates}" th:value="${iter.index}"
+                        th:text="${candidate.figure.name}"></option>
+            </select>
+            <input type="submit" class="btn btn-success votebtn" value="Vote!"/>
+        </form>
+    </div>
 
     <div class="modal fade" id="addVoter" tabindex="-1" aria-labelledby="addVoterModalLabel" aria-hidden="true">
         <div class="modal-dialog">
