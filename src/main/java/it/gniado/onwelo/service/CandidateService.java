@@ -3,7 +3,6 @@ package it.gniado.onwelo.service;
 import it.gniado.onwelo.model.Candidate;
 import it.gniado.onwelo.model.Figure;
 import it.gniado.onwelo.repository.CandidateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

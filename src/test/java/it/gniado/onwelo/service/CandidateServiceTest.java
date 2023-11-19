@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CandidateServiceTest {
 
@@ -55,5 +52,18 @@ class CandidateServiceTest {
         // THEN
         assertFalse(candidates.isEmpty());
         assertEquals(candidates.size(), CANDIDATES_AMOUNT);
+    }
+
+    @Test
+    void testAddCandidateTwice(){
+        //GIVEN
+        String candidateName = "Qwerty";
+        candidateService.addCandidate(candidateName);
+
+        // WHEN
+        Candidate added = candidateService.addCandidate(candidateName);
+
+        // THEN
+        assertNull(added);
     }
 }

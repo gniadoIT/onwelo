@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class CandidateRepositoryTest {
 
     private CandidateRepository candidateRepository;
@@ -89,6 +92,19 @@ class CandidateRepositoryTest {
 
         // THEN
         Assertions.assertTrue(candidateRepository.getCandidateById(index).getVotes() == votesAmount);
+    }
+
+    @Test
+    void testAddCandidateTwice(){
+        // GIVEN
+        Candidate candidate = createCandidate("Qwerty");
+        candidateRepository.addCandidate(candidate);
+
+        // WHEN
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, ()->candidateRepository.addCandidate(candidate));
+
+        // THEN
+        assertEquals(ex.getMessage(), "Candidates must be unique");
     }
 
     private Candidate createCandidate(String candidateName) {

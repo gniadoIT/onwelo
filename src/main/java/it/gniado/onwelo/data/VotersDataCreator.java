@@ -3,7 +3,6 @@ package it.gniado.onwelo.data;
 import it.gniado.onwelo.model.Figure;
 import it.gniado.onwelo.model.Voter;
 import it.gniado.onwelo.repository.VoterRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
